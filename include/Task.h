@@ -4,22 +4,43 @@
 
 enum class statusType
 {
-    TODO,
+    TODO=1,
     INPROGRESS,
     DONE,
     FAIL,
 
-    MAX_status
+    UNKNOWN
 };
 
 enum class priorityType
 {
-    LOW,
+    LOW=1,
     MEDIUM,
     HIGH,
 
-    MAX_priority
+    UNKNOWN
 };
+
+    inline std::string statusToString(statusType status) {
+        switch (status) {
+            case statusType::TODO: return "TODO";
+            case statusType::INPROGRESS: return "INPROGRESS";
+            case statusType::DONE: return "DONE";
+            case statusType::FAIL: return "FAIL";
+            case statusType::UNKNOWN: return "UNKNOWN";
+            default: return "UNKNOWN";
+        }
+    }
+
+    inline std::string priorityToString(priorityType priority) {
+        switch (priority) {
+            case priorityType::LOW: return "LOW";
+            case priorityType::MEDIUM: return "MEDIUM";
+            case priorityType::HIGH: return "HIGH";
+            case priorityType::UNKNOWN: return "UNKNOWN";
+            default: return "UNKNOWN";
+        }
+    }
 
 class Task
 {
@@ -34,7 +55,7 @@ private:
     std::tm createdAt{};
 
 public:
-    Task() = delete;
+    Task();
     Task(
         const std::string& title, 
         const std::string& description,
@@ -43,6 +64,11 @@ public:
     );
 
     int getId() const { return id; }
-    friend std::ostream& operator<<(std::ostream& os, const Task& task);
+    void create();
+    void editTitle();
+    void editDescription();
+    void editStatus();
+    void editPriority();
 
+    friend std::ostream& operator<<(std::ostream& os, const Task& task);
 };
