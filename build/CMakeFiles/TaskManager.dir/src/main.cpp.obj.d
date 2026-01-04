@@ -130,4 +130,5 @@ CMakeFiles/TaskManager.dir/src/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.1.0/bits/ostream.tcc \
  C:/msys64/mingw64/include/c++/12.1.0/istream \
  C:/msys64/mingw64/include/c++/12.1.0/bits/istream.tcc \
- D:/Modern\ C++\ Course/TaskManager/include/Task.h
+ D:/Modern\ C++\ Course/TaskManager/include/Task.h \
+ C:/msys64/mingw64/include/c++/12.1.0/ctime
