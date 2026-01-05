@@ -4,8 +4,8 @@
 
 enum class statusType
 {
-    TODO=1,
-    INPROGRESS,
+    TODO=0,
+    IN_PROGRESS,
     DONE,
     FAIL,
 
@@ -14,7 +14,7 @@ enum class statusType
 
 enum class priorityType
 {
-    LOW=1,
+    LOW=0,
     MEDIUM,
     HIGH,
 
@@ -24,10 +24,11 @@ enum class priorityType
     inline std::string statusToString(statusType status) {
         switch (status) {
             case statusType::TODO: return "TODO";
-            case statusType::INPROGRESS: return "INPROGRESS";
+            case statusType::IN_PROGRESS: return "IN_PROGRESS";
             case statusType::DONE: return "DONE";
             case statusType::FAIL: return "FAIL";
             case statusType::UNKNOWN: return "UNKNOWN";
+            
             default: return "UNKNOWN";
         }
     }
@@ -38,6 +39,7 @@ enum class priorityType
             case priorityType::MEDIUM: return "MEDIUM";
             case priorityType::HIGH: return "HIGH";
             case priorityType::UNKNOWN: return "UNKNOWN";
+
             default: return "UNKNOWN";
         }
     }
@@ -57,18 +59,34 @@ private:
 public:
     Task();
     Task(
+        int id,
         const std::string& title, 
         const std::string& description,
-         statusType status, 
-         priorityType priority
+        statusType status, 
+        priorityType priority,
+        std::tm createdAt
+    );
+
+    Task(
+        const std::string& title, 
+        const std::string& description,
+        statusType status, 
+        priorityType priority
     );
 
     int getId() const { return id; }
-    void create();
-    void editTitle();
-    void editDescription();
-    void editStatus();
-    void editPriority();
+    const std::string& getTitle() const { return title; }
+    const std::string& getDescription() const { return description; }
+    statusType getStatus() const { return status; }
+    priorityType getPriority() const { return priority; }
+    const std::tm& getCreatedAt() const { return createdAt; }
+
+    void setId(int newId) { id = newId; }
+    void setTitle(const std::string& newTitle) { title = newTitle; }
+    void setDescription(const std::string& newDescription) { description = newDescription; }
+    void setStatus(statusType newStatus) { status = newStatus; }
+    void setPriority(priorityType newPriority) { priority = newPriority; }
+    void setCreatedAt(const std::tm& newCreatedAt) { createdAt = newCreatedAt; }
 
     friend std::ostream& operator<<(std::ostream& os, const Task& task);
 };

@@ -152,6 +152,30 @@ src/Task.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TaskManager.dir\build.make CMakeFiles/TaskManager.dir/src/Task.cpp.s
 .PHONY : src/Task.cpp.s
 
+src/TaskManager.obj: src/TaskManager.cpp.obj
+.PHONY : src/TaskManager.obj
+
+# target to build an object file
+src/TaskManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TaskManager.dir\build.make CMakeFiles/TaskManager.dir/src/TaskManager.cpp.obj
+.PHONY : src/TaskManager.cpp.obj
+
+src/TaskManager.i: src/TaskManager.cpp.i
+.PHONY : src/TaskManager.i
+
+# target to preprocess a source file
+src/TaskManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TaskManager.dir\build.make CMakeFiles/TaskManager.dir/src/TaskManager.cpp.i
+.PHONY : src/TaskManager.cpp.i
+
+src/TaskManager.s: src/TaskManager.cpp.s
+.PHONY : src/TaskManager.s
+
+# target to generate assembly for a file
+src/TaskManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TaskManager.dir\build.make CMakeFiles/TaskManager.dir/src/TaskManager.cpp.s
+.PHONY : src/TaskManager.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -188,6 +212,9 @@ help:
 	@echo ... src/Task.obj
 	@echo ... src/Task.i
 	@echo ... src/Task.s
+	@echo ... src/TaskManager.obj
+	@echo ... src/TaskManager.i
+	@echo ... src/TaskManager.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

@@ -84,12 +84,12 @@ clean: CMakeFiles/TaskManager.dir/clean
 CMakeFiles/TaskManager.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TaskManager.dir\build.make CMakeFiles/TaskManager.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TaskManager.dir\build.make CMakeFiles/TaskManager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="D:\Modern C++ Course\TaskManager\build\CMakeFiles" --progress-num=1,2,3 "Built target TaskManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="D:\Modern C++ Course\TaskManager\build\CMakeFiles" --progress-num=1,2,3,4 "Built target TaskManager"
 .PHONY : CMakeFiles/TaskManager.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TaskManager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Modern C++ Course\TaskManager\build\CMakeFiles" 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Modern C++ Course\TaskManager\build\CMakeFiles" 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/TaskManager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Modern C++ Course\TaskManager\build\CMakeFiles" 0
 .PHONY : CMakeFiles/TaskManager.dir/rule
@@ -101,7 +101,7 @@ TaskManager: CMakeFiles/TaskManager.dir/rule
 # codegen rule for target.
 CMakeFiles/TaskManager.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TaskManager.dir\build.make CMakeFiles/TaskManager.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="D:\Modern C++ Course\TaskManager\build\CMakeFiles" --progress-num=1,2,3 "Finished codegen for target TaskManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="D:\Modern C++ Course\TaskManager\build\CMakeFiles" --progress-num=1,2,3,4 "Finished codegen for target TaskManager"
 .PHONY : CMakeFiles/TaskManager.dir/codegen
 
 # clean rule for target.

@@ -1,5 +1,5 @@
-CMakeFiles/TaskManager.dir/src/main.cpp.obj: \
- D:\Modern\ C++\ Course\TaskManager\src\main.cpp \
+CMakeFiles/TaskManager.dir/src/TaskManager.cpp.obj: \
+ D:\Modern\ C++\ Course\TaskManager\src\TaskManager.cpp \
  D:/Modern\ C++\ Course/TaskManager/include/TaskManager.h \
  D:/Modern\ C++\ Course/TaskManager/include/Task.h \
  C:/msys64/mingw64/include/c++/12.1.0/iostream \
@@ -137,4 +137,9 @@ CMakeFiles/TaskManager.dir/src/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.1.0/bits/stl_uninitialized.h \
  C:/msys64/mingw64/include/c++/12.1.0/bits/stl_vector.h \
  C:/msys64/mingw64/include/c++/12.1.0/bits/stl_bvector.h \
- C:/msys64/mingw64/include/c++/12.1.0/bits/vector.tcc
+ C:/msys64/mingw64/include/c++/12.1.0/bits/vector.tcc \
+ C:/msys64/mingw64/include/c++/12.1.0/fstream \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/codecvt.h \
+ C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32/bits/basic_file.h \
+ C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32/bits/c++io.h \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/fstream.tcc

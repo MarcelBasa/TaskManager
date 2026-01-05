@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/TaskManager.dir/src/Task.cpp.obj"
   "CMakeFiles/TaskManager.dir/src/Task.cpp.obj.d"
+  "CMakeFiles/TaskManager.dir/src/TaskManager.cpp.obj"
+  "CMakeFiles/TaskManager.dir/src/TaskManager.cpp.obj.d"
   "CMakeFiles/TaskManager.dir/src/main.cpp.obj"
   "CMakeFiles/TaskManager.dir/src/main.cpp.obj.d"
   "TaskManager.exe"

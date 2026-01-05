@@ -1,12 +1,14 @@
-#include <iostream>
-#include "Task.h"
+#include "TaskManager.h"
 
 int main()
 {
-    Task t1, t2;
-    t2.create();
+    TaskManager taskManager;
 
-    std::cout<<t1<<std::endl<<t2<<std::endl;
+    //taskManager.addTask();
+    taskManager.addTask();
+
+    //taskManager.loadFromFile("data.txt");
+    taskManager.showTasks();
 
     return 0;
 }
