@@ -23,6 +23,8 @@ Task::Task(
     this->status = status;
     this->priority = priority;
     this->createdAt = createdAt;
+
+    nextId = ++id;
 }
 
 Task::Task(const std::string& title, const std::string& description,

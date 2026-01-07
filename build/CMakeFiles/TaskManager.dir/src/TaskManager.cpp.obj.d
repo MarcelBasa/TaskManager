@@ -142,4 +142,22 @@ CMakeFiles/TaskManager.dir/src/TaskManager.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.1.0/bits/codecvt.h \
  C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32/bits/basic_file.h \
  C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32/bits/c++io.h \
- C:/msys64/mingw64/include/c++/12.1.0/bits/fstream.tcc
+ C:/msys64/mingw64/include/c++/12.1.0/bits/fstream.tcc \
+ C:/msys64/mingw64/include/c++/12.1.0/algorithm \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/stl_algo.h \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/algorithmfwd.h \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/stl_heap.h \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/stl_tempbuf.h \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/uniform_int_dist.h \
+ C:/msys64/mingw64/include/c++/12.1.0/pstl/glue_algorithm_defs.h \
+ C:/msys64/mingw64/include/c++/12.1.0/pstl/execution_defs.h \
+ C:/msys64/mingw64/include/c++/12.1.0/iomanip \
+ C:/msys64/mingw64/include/c++/12.1.0/locale \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/locale_facets_nonio.h \
+ C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32/bits/time_members.h \
+ C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32/bits/messages_members.h \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/locale_facets_nonio.tcc \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/locale_conv.h \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/quoted_string.h \
+ C:/msys64/mingw64/include/c++/12.1.0/sstream \
+ C:/msys64/mingw64/include/c++/12.1.0/bits/sstream.tcc

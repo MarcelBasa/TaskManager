@@ -2,47 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-TaskManager::TaskManager() 
-    :tasks{}
-{
-}
-
-void TaskManager::addTask()
-{
-    std::string title, description;
-    statusType status;
-    priorityType priority;
-
-    std::cout << "Title: ";
-    std::getline(std::cin, title);
-    std::cout << "Description: ";
-    std::getline(std::cin, description);
-    
-    // Status
-int s;
-std::cout << "Status (0=TODO, 1=IN_PROGRESS, 2=DONE): ";
-std::cin >> s;
-switch(s) {
-    case 0: status = statusType::TODO; break;
-    case 1: status = statusType::IN_PROGRESS; break;
-    case 2: status = statusType::DONE; break;
-    default: status = statusType::UNKNOWN;
-}
-
-int p;
-std::cout << "Priority (0=LOW, 1=MEDIUM, 2=HIGH): ";
-std::cin >> p;
-switch(p) {
-    case 0: priority = priorityType::LOW; break;
-    case 1: priority = priorityType::MEDIUM; break;
-    case 2: priority = priorityType::HIGH; break;
-    default: priority = priorityType::UNKNOWN;
-}
-
-    Task newTask(title, description, static_cast<statusType>(s), static_cast<priorityType>(p));
-    tasks.push_back(newTask);
-}
+#include <algorithm>
+#include <iomanip>
 
 void TaskManager::showTasks()
  {
@@ -52,13 +13,11 @@ void TaskManager::showTasks()
     }
  }
 
- void TaskManager::saveToFile(std::string filePath)
+ bool TaskManager::saveToFile(std::string filePath)
  {
-    std::ofstream MyFile(filePath, std::ios::app);
-    if (!MyFile.is_open()) {
-        std::cerr << "Cannot open file: " << filePath << "\n";
-        return;
-    }
+    std::ofstream MyFile(filePath, std::ios::trunc);
+    if (!MyFile.is_open())
+        return false;
 
     for(const Task& t : tasks)
     {
@@ -66,30 +25,104 @@ void TaskManager::showTasks()
     }
 
     MyFile.close();
+    return true;
  }
 
- void TaskManager::loadFromFile(std::string filePath)
+ bool TaskManager::loadFromFile(std::string filePath)
  {
     std::ifstream MyFile(filePath);
-        if (!MyFile.is_open()) {
-        std::cerr << "Cannot open file: " << filePath << "\n";
-        return;
-    }
+    if (!MyFile.is_open()) 
+        return false;
 
     std::string line;
-    int iterator = 0;
-    std::string value;
+    std::vector<std::string> valuesForTask;
+
     while (std::getline(MyFile, line)) 
     {
-        if (line.empty()) continue;
-        iterator = 0;
-        while(line[iterator] != ':')
+        if (line.empty()) 
         {
-            iterator++;
+            Task formatedTask = formateTask(valuesForTask.begin());
+            tasks.push_back(formatedTask); 
+
+            valuesForTask.clear(); 
+            continue;
         }
-        value = line.substr(iterator+2);
-        std::cout<<value<<std::endl;
+        auto pos = line.find(": ");
+        if (pos != std::string::npos)
+        {
+            valuesForTask.push_back(line.substr(pos + 2));
+        }
     }
 
     MyFile.close();
+    return true;
  }
+
+ Task TaskManager::formateTask(std::vector<std::string>::iterator task)
+{
+    int id = std::stoi(*task++);
+    std::string title = *task++;
+    std::string description = *task++;
+    
+    statusType status = statusType::UNKNOWN;
+    if (*task == "TODO") status = statusType::TODO;
+    else if (*task == "IN_PROGRESS") status = statusType::IN_PROGRESS;
+    else if (*task == "DONE") status = statusType::DONE;
+    else if (*task == "FAIL") status = statusType::FAIL;
+    task++;
+
+    priorityType priority = priorityType::UNKNOWN;
+    if (*task == "LOW") priority = priorityType::LOW;
+    else if (*task == "MEDIUM") priority = priorityType::MEDIUM;
+    else if (*task == "HIGH") priority = priorityType::HIGH;
+    task++;
+
+    std::tm createdAt = parseDate(*task);
+
+    return Task(id, title, description, status, priority, createdAt);
+}
+
+std::tm TaskManager::parseDate(const std::string& dateStr)
+{
+    std::tm tm{};
+    int year, month, day;
+
+    if (sscanf(dateStr.c_str(), "%d-%d-%d", &day, &month, &year) == 3)
+    {
+        tm.tm_year = year - 1900;
+        tm.tm_mon  = month - 1;
+        tm.tm_mday = day;
+    }
+    else
+    {
+        std::cerr << "Error during parsing: " << dateStr << std::endl;
+    }
+
+    return tm;
+}
+
+ Task* TaskManager::findTaskById(int id)
+ {
+    auto it = std::find_if(tasks.begin(), tasks.end(), [id](const Task& t) {
+        return t.getId() == id;
+    });
+
+    if (it != tasks.end()) 
+        return &(*it);
+    else 
+        return nullptr;
+ }
+
+bool TaskManager::editTask(int id, const std::string& newTitle, const std::string& newDescription, statusType newStatus, priorityType newPriority)
+{
+    Task* task = findTaskById(id);
+    if (!task)
+        return false;
+
+    task->setTitle(newTitle);
+    task->setDescription(newDescription);
+    task->setStatus(newStatus);
+    task->setPriority(newPriority);
+
+    return true;
+}
