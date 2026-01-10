@@ -14,7 +14,7 @@ public:
     TaskManager() = default;
     ~TaskManager() = default;
 
-    Task* findTaskById(int id);
+    std::vector<Task>::iterator findTaskById(int id);
     std::vector<Task> getTasks() const { return tasks; }
 
     void addTask(const Task& task);
@@ -24,6 +24,8 @@ public:
 
     bool editTask(int id, const std::string& newTitle, const std::string& newDescription, statusType newStatus, priorityType newPriority);
     
+    bool deleteTask(int id);
+
     bool saveToFile(std::string filePath);
     bool loadFromFile(std::string filePath);
 };

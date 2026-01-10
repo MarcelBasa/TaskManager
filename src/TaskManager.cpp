@@ -101,28 +101,28 @@ std::tm TaskManager::parseDate(const std::string& dateStr)
     return tm;
 }
 
- Task* TaskManager::findTaskById(int id)
+std::vector<Task>::iterator TaskManager::findTaskById(int id)
  {
     auto it = std::find_if(tasks.begin(), tasks.end(), [id](const Task& t) {
         return t.getId() == id;
     });
 
     if (it != tasks.end()) 
-        return &(*it);
+        return it;
     else 
-        return nullptr;
+        return tasks.end();
  }
 
 bool TaskManager::editTask(int id, const std::string& newTitle, const std::string& newDescription, statusType newStatus, priorityType newPriority)
 {
-    Task* task = findTaskById(id);
-    if (!task)
+    std::vector<Task>::iterator taskIT = findTaskById(id);
+    if (taskIT == tasks.end())
         return false;
 
-    task->setTitle(newTitle);
-    task->setDescription(newDescription);
-    task->setStatus(newStatus);
-    task->setPriority(newPriority);
+    taskIT->setTitle(newTitle);
+    taskIT->setDescription(newDescription);
+    taskIT->setStatus(newStatus);
+    taskIT->setPriority(newPriority);
 
     return true;
 }
@@ -135,4 +135,14 @@ void TaskManager::addTask(const Task& task)
 void TaskManager::addTask(const std::string& title, const std::string& description, statusType status, priorityType priority)
 {
     tasks.push_back(Task(title, description, status, priority)); 
+}
+
+bool TaskManager::deleteTask(int id)
+{
+    std::vector<Task>::iterator taskIT = findTaskById(id);
+    if (taskIT == tasks.end())
+        return false;
+
+    tasks.erase(taskIT);
+    return true;
 }

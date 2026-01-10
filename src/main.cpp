@@ -9,6 +9,7 @@ void showMenu() {
     std::cout << "3. Edit task\n";
     std::cout << "4. Save tasks to file\n";
     std::cout << "5. Load tasks from file\n";
+    std::cout << "6. Delete task\n";
     std::cout << "0. Exit\n";
     std::cout << "Choose option: ";
 }
@@ -40,28 +41,45 @@ int main()
                 std::cout << "Enter description: ";
                 std::getline(std::cin, description);
 
-                statusType status = statusType::UNKNOWN;
+statusType status = statusType::UNKNOWN;
                 while (status == statusType::UNKNOWN) 
                 {
-                    std::cout << "Enter status (TODO, IN_PROGRESS, DONE, FAIL): ";
-                    std::getline(std::cin, statusStr);
-                    if (statusStr == "TODO") status = statusType::TODO;
-                    else if (statusStr == "IN_PROGRESS") status = statusType::IN_PROGRESS;
-                    else if (statusStr == "DONE") status = statusType::DONE;
-                    else if (statusStr == "FAIL") status = statusType::FAIL;
-                    else std::cout << "Invalid status! Try again.\n";
+                    std::cout << "Select status:\n";
+                    std::cout << "1. TODO\n2. IN_PROGRESS\n3. DONE\n4. FAIL\n";
+                    std::cout << "Choice: ";
+                    int sChoice;
+                    std::cin >> sChoice;
+                    std::cin.ignore(); 
+
+                    switch(sChoice) 
+                    {
+                        case 1: status = statusType::TODO; break;
+                        case 2: status = statusType::IN_PROGRESS; break;
+                        case 3: status = statusType::DONE; break;
+                        case 4: status = statusType::FAIL; break;
+                        default: std::cout << "Invalid choice! Try again.\n"; break;
+                    }
                 }
 
                 priorityType priority = priorityType::UNKNOWN;
                 while (priority == priorityType::UNKNOWN) 
                 {
-                    std::cout << "Enter priority (LOW, MEDIUM, HIGH): ";
-                    std::getline(std::cin, priorityStr);
-                    if (priorityStr == "LOW") priority = priorityType::LOW;
-                    else if (priorityStr == "MEDIUM") priority = priorityType::MEDIUM;
-                    else if (priorityStr == "HIGH") priority = priorityType::HIGH;
-                    else std::cout << "Invalid priority! Try again.\n";
+                    std::cout << "Select priority:\n";
+                    std::cout << "1. LOW\n2. MEDIUM\n3. HIGH\n";
+                    std::cout << "Choice: ";
+                    int pChoice;
+                    std::cin >> pChoice;
+                    std::cin.ignore();
+
+                    switch(pChoice) 
+                    {
+                        case 1: priority = priorityType::LOW; break;
+                        case 2: priority = priorityType::MEDIUM; break;
+                        case 3: priority = priorityType::HIGH; break;
+                        default: std::cout << "Invalid choice! Try again.\n"; break;
+                    }
                 }
+                
                 manager.addTask(title, description, status, priority);
 
                 std::cout << "Task added" << std::endl;
@@ -149,6 +167,20 @@ int main()
                     std::cout << "Tasks loaded!\n";
                 else
                     std::cout << "Failed to load tasks!\n";
+
+                break;
+            }
+            case 6: 
+            {
+                int id;
+                std::cout << "Enter task ID to edit: ";
+                std::cin >> id;
+                std::cin.ignore();
+
+                if(manager.deleteTask(id))
+                    std::cout << "Task deleted!\n";
+                else
+                    std::cout << "Failed to delete task!\n";
 
                 break;
             }

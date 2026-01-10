@@ -7,6 +7,7 @@ class taskTestFixture : public testing::Test
 public:
     std::unique_ptr<TaskManager> TM; 
 
+
     taskTestFixture()
     {
         TM = std::make_unique<TaskManager>();
@@ -29,8 +30,8 @@ TEST_F(taskTestFixture, FindTaskByIdReturnsCorrectTask)
     TM->addTask(task);
     int id = TM->getTasks()[0].getId();
 
-    Task* found = TM->findTaskById(id);
-    ASSERT_NE(found, nullptr);
+    std::vector<Task>::iterator found = TM->findTaskById(id);
+    ASSERT_NE(found, TM->getTasks().end());
     EXPECT_EQ(found->getTitle(), "Task 1");
 }
 
@@ -43,8 +44,8 @@ TEST_F(taskTestFixture, EditTaskChangesFields)
     bool success = TM->editTask(id, "New title", "New desc", statusType::DONE, priorityType::HIGH);
     EXPECT_TRUE(success);
 
-    Task* edited = TM->findTaskById(id);
-    ASSERT_NE(edited, nullptr);
+    std::vector<Task>::iterator edited = TM->findTaskById(id);
+    ASSERT_NE(edited, TM->getTasks().end());
     EXPECT_EQ(edited->getId(), task.getId());
     EXPECT_EQ(edited->getTitle(), "New title");
     EXPECT_EQ(edited->getDescription(), "New desc");
@@ -56,6 +57,22 @@ TEST_F(taskTestFixture, EditNonExistingTaskReturnsFalse)
 {
     bool success = TM->editTask(999, "Title", "Desc", statusType::DONE, priorityType::HIGH);
     EXPECT_FALSE(success);
+}
+
+TEST_F(taskTestFixture, DeleteTask) 
+{
+    Task task("Old title", "Old desc", statusType::TODO, priorityType::LOW);
+    TM->addTask(task);
+    int id = TM->getTasks()[0].getId();
+    int sizeBefore = TM->getTasks().size();
+
+    bool success = TM->deleteTask(id);
+    EXPECT_TRUE(success);
+    EXPECT_EQ(TM->getTasks().size(), sizeBefore - 1);
+
+    auto it = std::find_if(TM->getTasks().begin(), TM->getTasks().end(),
+                           [id](const Task& t){ return t.getId() == id; });
+    EXPECT_EQ(it, TM->getTasks().end());
 }
 
 TEST_F(taskTestFixture, SaveAndLoadFile) 
