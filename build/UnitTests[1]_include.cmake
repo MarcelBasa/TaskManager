@@ -1,5 +1,0 @@
-if(EXISTS "D:/Modern C++ Course/TaskManager/build/UnitTests[1]_tests.cmake")
-  include("D:/Modern C++ Course/TaskManager/build/UnitTests[1]_tests.cmake")
-else()
-  add_test(UnitTests_NOT_BUILT UnitTests_NOT_BUILT)
-endif()

@@ -1,3 +1,0 @@
-D:/Modern C++ Course/TaskManager/build/CMakeFiles/TaskManager.dir
-D:/Modern C++ Course/TaskManager/build/CMakeFiles/edit_cache.dir
-D:/Modern C++ Course/TaskManager/build/CMakeFiles/rebuild_cache.dir
