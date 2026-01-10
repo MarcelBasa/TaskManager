@@ -3,13 +3,12 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
-#include <iomanip>
 
 void TaskManager::showTasks()
  {
     for(const Task& t : tasks)
     {
-        std::cout<<t<<std::endl;
+        std::cout<<std::endl<<t<<std::endl;
     }
  }
 
@@ -34,6 +33,7 @@ void TaskManager::showTasks()
     if (!MyFile.is_open()) 
         return false;
 
+    tasks.clear();
     std::string line;
     std::vector<std::string> valuesForTask;
 
@@ -125,4 +125,14 @@ bool TaskManager::editTask(int id, const std::string& newTitle, const std::strin
     task->setPriority(newPriority);
 
     return true;
+}
+
+void TaskManager::addTask(const Task& task) 
+{ 
+    tasks.push_back(task); 
+}
+
+void TaskManager::addTask(const std::string& title, const std::string& description, statusType status, priorityType priority)
+{
+    tasks.push_back(Task(title, description, status, priority)); 
 }

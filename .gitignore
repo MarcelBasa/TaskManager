@@ -1,0 +1,67 @@
+# -------------------------------
+# Build directories
+# -------------------------------
+build/
+bin/
+Debug/
+Release/
+
+# -------------------------------
+# CMake files
+# -------------------------------
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+DartConfiguration.tcl
+
+# -------------------------------
+# IDE / Editor files
+# -------------------------------
+# VSCode
+.vscode/
+# Visual Studio
+*.vcxproj*
+*.sln
+*.user
+*.ipch
+*.opensdf
+*.sdf
+*.ncb
+*.suo
+*.vcxproj.filters
+*.VC.db
+
+# CLion
+cmake-build-*/
+
+# -------------------------------
+# Compiled binaries / object files
+# -------------------------------
+*.exe
+*.out
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+
+# -------------------------------
+# Google Test / temporary files
+# -------------------------------
+*.log
+*.txt
+
+# -------------------------------
+# MacOS
+# -------------------------------
+.DS_Store
+
+# -------------------------------
+# Others
+# -------------------------------
+*.bak
+*.swp
