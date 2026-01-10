@@ -5,35 +5,27 @@ project(TaskManager VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Włącz testy
 enable_testing()
 
-# GoogleTest
 include(FetchContent)
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
 )
 
-# Zapobiega nadpisywaniu ustawień kompilatora
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Include
 include_directories(include)
 
-# Źródła bez main.cpp
 file(GLOB LIB_SOURCES "src/*.cpp")
 list(REMOVE_ITEM LIB_SOURCES "${CMAKE_SOURCE_DIR}/src/main.cpp")
 
-# Biblioteka z logiką
 add_library(TaskManagerLib ${LIB_SOURCES})
 
 target_include_directories(TaskManagerLib PUBLIC include)
 
-# Aplikacja
 add_executable(TaskManager src/main.cpp)
 target_link_libraries(TaskManager TaskManagerLib)
 
-# Testy
 add_subdirectory(tests)
