@@ -76,9 +76,3 @@ This is a small educational project created to practice:
 * modern C++ development
 * CMake project structure
 * unit testing with GoogleTest
-
----
-
-## Author
-
-Marcelo
